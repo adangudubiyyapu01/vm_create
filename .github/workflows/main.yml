@@ -1,0 +1,28 @@
+name: Bicep Action Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  bicep-action:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '14'
+
+    - name: Install Bicep CLI
+      run: |
+        npm install -g bicep
+
+    - name: Validate Bicep File
+      run: bicep build path/to/your/template.bicep
+
+    # Add additional steps or actions as needed for your use case
